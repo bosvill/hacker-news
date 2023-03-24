@@ -9,14 +9,12 @@ function App() {
 	const [data, setData] = useState(null)
 	const [isLoading, setIsLoading] = useState(false)
 	const [searchQuery, setSearchQuery] = useState('')
-	const [data, setData] = useState(null)
-	const [isLoading, setIsLoading] = useState(false)
-	const [searchQuery, setSearchQuery] = useState('')
+
 	const [type, setType] = useState('')
 	const [dateRange, setDateRange] = useState('')
 	const [sort, setSort] = useState('')
-	
-	let url= `http://hn.algolia.com/api/v1/search?query=${searchQuery}`
+
+	let url = `http://hn.algolia.com/api/v1/search?query=${searchQuery}`
 
 	useEffect(() => {
 		setIsLoading(true)
@@ -31,6 +29,8 @@ function App() {
 				setIsLoading(false)
 			})
 	}, [url, searchQuery])
+
+	const applyFilter = () => {}
 
 	return (
 		<div className='App'>
