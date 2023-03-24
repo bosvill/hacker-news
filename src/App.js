@@ -9,9 +9,15 @@ function App() {
 	const [data, setData] = useState(null)
 	const [isLoading, setIsLoading] = useState(false)
 	const [searchQuery, setSearchQuery] = useState('')
-	//const [endpoint, setEndpoint] = useState('query')
+	const [data, setData] = useState(null)
+	const [isLoading, setIsLoading] = useState(false)
+	const [searchQuery, setSearchQuery] = useState('')
+	const [type, setType] = useState('')
+	const [dateRange, setDateRange] = useState('')
+	const [sort, setSort] = useState('')
+	
+	let url= `http://hn.algolia.com/api/v1/search?query=${searchQuery}`
 
-	let url = `http://hn.algolia.com/api/v1/search?query=${searchQuery}`
 	useEffect(() => {
 		setIsLoading(true)
 		fetch(url)
@@ -29,7 +35,17 @@ function App() {
 	return (
 		<div className='App'>
 			<Navbar />
-			<Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+			<Search
+				searchQuery={searchQuery}
+				setSearchQuery={setSearchQuery}
+				type={type}
+				setType={setType}
+				dateRange={dateRange}
+				setDateRange={setDateRange}
+				sort={sort}
+				setSort={setSort}
+				applyFilter={applyFilter}
+			/>
 			<Main data={data} isLoading={isLoading} />
 			<Footer />
 		</div>

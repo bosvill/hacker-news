@@ -59,7 +59,18 @@
 .btn:hover,
 .btn:focus {
 	background-color: var(--hover);
-	color: var(--font-light);
+	color: var(--hover);
+	border: none;
+}
+
+.apply {
+	margin: 0;
+	background-color: var(--hover);
+}
+
+.apply:focus,
+.apply:hover {
+	background-color: var(--bg-btn);
 }
 
 .main {
@@ -121,6 +132,24 @@ img {
 	width: 2rem;
 	border: 1px solid var(--hover);
 	border-right: none;
+}
+
+.search-form {
+	width: 90%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.filter {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	margin-top: 1rem;
+}
+.filter select {
+	border: var(--hover);
+	padding: 0.5rem;
 }
 
 .form {
