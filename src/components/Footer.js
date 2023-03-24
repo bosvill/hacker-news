@@ -1,4 +1,5 @@
 import React from 'react'
+
 const footerLinks = [
 	'Guidelines',
 	'FAQ',
@@ -14,9 +15,12 @@ const Footer = () => {
 		<footer className='footer'>
 			<ul className='list'>
 				{footerLinks.map(link => (
-					<li className='navlink'>{link}</li>
+					<li className='navlink' key={footerLinks.indexOf(link)}>
+						{link}
+					</li>
 				))}
 			</ul>
+			
 		</footer>
 	)
 }
