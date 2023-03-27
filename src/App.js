@@ -1,36 +1,34 @@
 import './App.css'
 import React, { useState, useEffect } from 'react'
-import Main from './components/Main'
+import fetchData from './api.js'
+import New from './components/New'
 import Navbar from './components/Navbar.js'
 import Footer from './components/Footer.js'
 import Search from './components/Search'
 
-function App() {
+export default function App() {
 	const [data, setData] = useState(null)
 	const [isLoading, setIsLoading] = useState(false)
-	const [searchQuery, setSearchQuery] = useState('')
-
-	const [type, setType] = useState('')
-	const [dateRange, setDateRange] = useState('')
-	const [sort, setSort] = useState('')
-
-	let url = `http://hn.algolia.com/api/v1/search?query=${searchQuery}`
+	const [searchQuery, setSearchQuery] = useState('search?query=')
+	const [searchInput, setSearchInput] = useState('')
+	const [highlight, setHighlight] = useState(false)
+	
+	
+	const urlBase= `http://hn.algolia.com/api/v1/`
+	//const urlPath=`search?query=`
 
 	useEffect(() => {
 		setIsLoading(true)
-		fetch(url)
-			.then(response => {
-				return response.json()
-			})
-			.then(data => {
-				setData(data.hits)
-				console.log(data)
-				console.log(`http://hn.algolia.com/api/v1/search?${searchQuery}`)
-				setIsLoading(false)
-			})
-	}, [url, searchQuery])
-
-	const applyFilter = () => {}
+		const endpoint = urlBase + searchQuery
+		fetchData(endpoint)
+		.then( data =>{
+			setData(data.hits)
+			console.log(endpoint)
+			console.log(data)
+			setIsLoading(false)
+		})
+	// eslint-disable-next-line 
+	}, [searchQuery])
 
 	return (
 		<div className='App'>
@@ -38,18 +36,12 @@ function App() {
 			<Search
 				searchQuery={searchQuery}
 				setSearchQuery={setSearchQuery}
-				type={type}
-				setType={setType}
-				dateRange={dateRange}
-				setDateRange={setDateRange}
-				sort={sort}
-				setSort={setSort}
-				applyFilter={applyFilter}
+				searchInput={searchInput}
+				setSearchInput={setSearchInput}
+				setHighlight={setHighlight}
 			/>
-			<Main data={data} isLoading={isLoading} />
+			<New data={data} isLoading={isLoading} highlight={highlight}/>
 			<Footer />
 		</div>
 	)
 }
-
-export default App

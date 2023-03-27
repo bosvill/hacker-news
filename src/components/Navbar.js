@@ -10,7 +10,7 @@ const Navbar = () => {
 			<h3>Hacker News</h3>
 			<ul className='list'>
 				{navLinks.map(link => (
-					<li key={navLinks.indexOf(link)} className='link'>
+					<li key={navLinks.indexOf(link)} className='link'target="_blank" >
 						{link}
 					</li>
 				))}
@@ -21,3 +21,5 @@ const Navbar = () => {
 }
 
 export default Navbar
+
+//<a href="" onClick={()=>console.log(link.href)}>{link}</a>
