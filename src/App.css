@@ -39,9 +39,7 @@ body {
 	align-items: center;
 	grid-template-columns:0.5fr 0.5fr 2fr 0.5fr;
 }
-.link{
-	
-}
+
 .link:hover,
 .link:focus {
 	color: var(--hover);
@@ -103,6 +101,7 @@ body {
 	/* margin: auto; */
 }
 
+
 @media screen and (min-width:800px) {
 	.main{
 		display: grid;
@@ -136,8 +135,16 @@ body {
 	margin-right: 0.5rem;
 	border: none;
 }
+.articleLink{
+	word-break: break-all;
+	font-family: Sono, sans-serif;
+	font-style: italic;
+	text-decoration: none;
+	color: var(--font-grey);
+	padding: 0.5rem;
 
-a:-webkit-any-link {
+}
+/* a:-webkit-any-link {
 	word-break: break-all;
 	font-family: Sono, sans-serif;
 	font-style: italic;
@@ -145,7 +152,7 @@ a:-webkit-any-link {
 	color: var(--font-grey);
 	padding: 0.5rem;
 }
-
+ */
 
 .article-title {
 	font-size: 1.2rem;
@@ -194,4 +201,10 @@ a:-webkit-any-link {
 
 em {
 	background-color: #fb651e;
+}
+
+.pagination{
+	grid-column: 1/-1;
+	display: flex;
+	justify-content: center;
 }

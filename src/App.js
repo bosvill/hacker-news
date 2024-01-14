@@ -12,23 +12,22 @@ export default function App() {
 	const [searchQuery, setSearchQuery] = useState('search?query=')
 	const [searchInput, setSearchInput] = useState('')
 	const [highlight, setHighlight] = useState(false)
-	
-	
-	const urlBase= `http://hn.algolia.com/api/v1/`
-	//const urlPath=`search?query=`
+	const [currentPage, setCurrentPage] = useState(1)
 
 	useEffect(() => {
 		setIsLoading(true)
-		const endpoint = urlBase + searchQuery
-		fetchData(endpoint)
-		.then( data =>{
+		const endpoint = `http://hn.algolia.com/api/v1/` + searchQuery + `&page=${currentPage - 1}`
+		fetchData(endpoint).then(data => {
+			console.log(data)
+			console.log(data.page)
+			setCurrentPage(data.page + 1)
 			setData(data.hits)
 			console.log(endpoint)
-			console.log(data)
+
 			setIsLoading(false)
 		})
-	// eslint-disable-next-line 
-	}, [searchQuery])
+
+	}, [searchQuery, currentPage])
 
 	return (
 		<div className='App'>
@@ -40,7 +39,13 @@ export default function App() {
 				setSearchInput={setSearchInput}
 				setHighlight={setHighlight}
 			/>
-			<New data={data} isLoading={isLoading} highlight={highlight}/>
+			<New
+				data={data}
+				isLoading={isLoading}
+				highlight={highlight}
+				currentPage={currentPage}
+				setCurrentPage={setCurrentPage}
+			/>
 			<Footer />
 		</div>
 	)

@@ -56,7 +56,7 @@ const Search = ({
 
 		return target=''
 	}
-	// Timedropdown, math not finished
+	// Time dropdown, math not finished
 	const sortByTime=({target})=>{
 		const {value}=target
 		const timestamp= new Date().getTime()/1000
